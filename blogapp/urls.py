@@ -10,4 +10,8 @@ urlpatterns = [
     #viewsモジュール(views.pyファイル)のIndexViewを実行
     #URLパターン名は'index'
     path('', views.IndexView.as_view(), name='index'),
+    
+    path('blog-detail/<int:pk>',
+         views.BlogDetail.as_view(), 
+         name='blog_detail'),
 ]
