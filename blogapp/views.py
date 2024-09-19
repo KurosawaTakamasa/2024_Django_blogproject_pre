@@ -11,6 +11,9 @@ class IndexView(ListView):
     #BlogPostのオブジェクト(レコードの一覧)にorder_by()関数を適用して
     #BlogPostのレコードを登校日順の降順(大きい順=新しい順)に並べる
     queryset = BlogPost.objects.order_by('-posted_at')
+    
+    #1ページに表示するレコードの件数を表示
+    paginate_by = 4
 
 class BlogDetail(DetailView):
     #post.htmlをレンダリング(描画)する
