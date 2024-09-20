@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Django's Blog -Contact{% endblock %}
+
+<!-- Page Header-->
+ {% block header %}
+<header class="masthead" style="background-image: url({% static 'assets/img/contact-bg.jpg' %})">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>Contact Me</h1>
+                    <span class="subheading">Have questions? I have answers.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+<!-- Main Content-->
+{% block contents %}
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <strong>連絡を取りたいですか？
+                        以下のフォームに入力してメッセージを送信してください。
+                        できるだけ早くご連絡します。</strong>
+                
+                {% comment %} フォームの送信が成功した時のメッセージ {% endcomment %}
+                {% if messages %}
+                {% for message in messages  %}
+                <div class="alert alert-success" role="alert">
+                    {{message}}
+                </div>
+                {% endfor %}
+                {% endif %}
+
+                <div class="my-5">
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="form-floating">
+                            <div class="form-group floating-label-group controls">
+                                {{field.label_tag}}
+                                {{field}}
+                            <p></p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                
+                        <br />
+                       
+                        <button class="btn btn-primary " id="sendMessageButton" type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
